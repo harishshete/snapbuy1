@@ -1,0 +1,116 @@
+
+// JSON Template  for User Signup 
+{
+    "firstname":"Harish",
+    "laststname":"Shete",
+    "dob":"26 June 1998",
+    "mailId":"harishshete430@gmail.com",
+    "phonenumber":"7666827897",
+    "country":"India",
+    "city":"Amravati",
+    "username":"harish98",
+    "password":"harish98"
+}
+
+// JSON Template for User Login 
+
+{       
+        "username":"harish98",
+        "password":"harish98"
+}
+
+
+// INVESTMENTS 
+
+// JSON Template for INSERT  
+{
+    "investmentname":"ICIC Mutual fund",
+    "year":"2022",
+    "month":"October",
+    "date":"1-10-2022",
+    "ammount": 3000
+}
+
+//JSON Template for UPDATE    
+// pass any fiels with value to update
+{
+    "investmentname":"ICIC Mutual fund",   
+    "ammount": "5000",
+    "month":"November"
+}
+
+//JSON Template for DELETE    
+// pass any fiels with value to update
+{
+    "investmentname":"ICIC Mutual fund",   
+    "ammount": "5000",
+    "month":"November"
+}
+
+
+//JSON Template for RETRIEVE    
+
+GET:  http://localhost:3000/investment
+
+// pass any fiels with value to update
+{
+    
+}
+
+// INCOME 
+
+// JSON Template for INSERT  
+{
+    "sourcename": "DXC Salary",
+    "year": "2022",
+    "month": "November",
+    "date":"1-11-2022",
+    "ammount":30000
+}
+
+
+
+// Expense 
+// JSON Template for INSERT 
+{
+    "expensename": "Redmi Mobile",
+    "year": "2022",
+    "month": "October",
+    "date": "1-10-2022",
+    "ammount": 9000
+}
+
+// JSON Template for RETRIEVE
+// call welow API with GET
+http://localhost:3000/expense
+
+
+// JSON Template for UPDATE
+PATCH http://localhost:3000/expense
+
+{
+    "expensename": "RedmiMobile",
+    "newexpensename": "Realme Mobile",
+    "ammount": 3000
+}
+
+// JSON Template for UPDATE
+DELETE http://localhost:3000/expense
+
+{
+    "expensename": "Redmi Mobile",       
+}
+
+
+// SAVINGS
+
+// JSON Template for UPDATE
+PATCH http://localhost:3000/expense
+
+{
+    "year": "2022",
+    "newyear":2022,    
+    "month": "November",
+    "newmonth":"October",
+    "ammount": 4000
+}
