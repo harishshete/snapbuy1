@@ -34,6 +34,9 @@ exports.deleteSeller = async (req, res) => {
 }
 
 exports.listSellers = async (req, res) => { 
+
+    console.log(process.env.URL)
+
     console.log("/listsellers called")
 
     console.log("fetching details from the Seller schema")
