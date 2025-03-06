@@ -34,11 +34,12 @@ exports.deleteSeller = async (req, res) => {
 }
 
 exports.listSellers = async (req, res) => { 
-
-    console.log("/listsellers called")
+console.log("/listsellers called")
+    
+    const s = await Seller.find()
+    console.log(s)    
 
     console.log("fetching details from the Seller schema")
-    console.log(Seller.find())
     const sellers = await Seller.find({}, 'firstname _id')
     console.log("fetched details from the Seller schema and returning the response")
     console.log(sellers)
