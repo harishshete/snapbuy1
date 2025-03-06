@@ -4,7 +4,7 @@ const Seller = require('../../models/Seller');
 exports.updateSeller = async (req, res) => {
     // res.json("Request for Update Seller");
 
-    console.log("Reached to Update Shopper" + req.user.id);
+    console.log("Reached to Update Seller");
     if(req.body.password){
         req.body.password = CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString(); 
     }
@@ -18,4 +18,22 @@ exports.updateSeller = async (req, res) => {
         res.status(500).json("Could Not Update " + error)
     }
 
+}
+
+exports.deleteSeller = async (req, res) => {
+    console.log("Reached to Delete Seller");
+
+    if(req.body.seller_id && req.body.number == 'perforce' ){
+        try {
+            const deletedSeller = await Seller.findByIdAndDelete(req.body.seller_id)
+            res.status(200).json(deletedSeller)
+        } catch (error) {
+            res.json(error)
+        }
+    }
+}
+
+exports.listSellers = async (req, res) => { 
+    const sellers = await Seller.find({}, 'firstname _id')
+    res.status(200).json(sellers)
 }

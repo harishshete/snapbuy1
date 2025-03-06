@@ -18,11 +18,11 @@ router.post('/add:id', upload.single('productImage'), productsController.addProd
 
 
 // Form to Add product
+/*
 router.get("/form", (req, res) => {
     res.render("form");
 });
-
-
+*/
 
 
 module.exports = router;

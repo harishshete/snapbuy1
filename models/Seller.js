@@ -11,15 +11,18 @@ const ShoppersSchema = new mongoose.Schema({
         required: true
     },
     mobilenumber: {
-        type: Number,
-        required: true
+        type: Number
     },
+
+/*
     age: {
         type: Number
     },
     gender: {
         type: String
     },
+
+*/
     email: {
         type: String,
         required: true,
@@ -30,6 +33,7 @@ const ShoppersSchema = new mongoose.Schema({
         required: true
     },
 
+/*
     address: {
         country: {
             type: String,
@@ -63,6 +67,8 @@ const ShoppersSchema = new mongoose.Schema({
         ifsc: { type: String },
         accountnumber: { type: Number },
     },
+
+*/
     role: {
         type: String,
         default: "seller",

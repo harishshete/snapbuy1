@@ -17,7 +17,7 @@ exports.verifyAndAuthorizeSeller = catchAsync(async (req, res, next) => {
                 return res.status(403).json("Token is not valid");
             } else {
                 req.user = authData;
-                if (req.user.id && req.user.role === "seller") {
+                if (req.user.id /* && req.user.role === "seller" */) {
                     next();
                 }
                 else {
@@ -52,6 +52,7 @@ exports.verifyAndAuthorizeSeller = catchAsync(async (req, res, next) => {
 // Verify If user has logged out 
 exports.isPresent = async (req, res, next) => {
     const token = req.headers['authorization'];
+    console.log(token)
     const authToken = await AuthTokens.findOne({ token: token });
     console.log(authToken);
     if (authToken != null) {
@@ -159,10 +160,11 @@ exports.registerSeller = catchAsync(async (req, res, next) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         mobilenumber: req.body.mobilenumber,
-        age: req.body.age,
-        gender: req.body.gender,
+        //age: req.body.age,
+        //gender: req.body.gender,
         email: req.body.email,
         password: CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString(),
+        /*
         address: {
             country: req.body.address.country,
             State: req.body.address.State,
@@ -177,6 +179,7 @@ exports.registerSeller = catchAsync(async (req, res, next) => {
             ifsc: req.body.paymentinfo.ifsc,
             accountnumber: req.body.paymentinfo.accountnumber,
         }
+        */
     });
 
     try {
@@ -223,7 +226,7 @@ exports.login = catchAsync(async (req, res, next) => {
                 res.status(500).json(error);
             }
 
-        } else if (req.body.role == "seller") {
+        } else /*if (req.body.role == "seller") */{
             const user = await Seller.findOne({ email: req.body.email });
             !user && res.status(401).json("Wrong Credentials!");
 
@@ -239,7 +242,6 @@ exports.login = catchAsync(async (req, res, next) => {
             }, process.env.JWT_SECRET_KEY,
                 { expiresIn: "3d" }
             );
-
             const { password, ...others } = user._doc;
 
             try {
@@ -253,9 +255,12 @@ exports.login = catchAsync(async (req, res, next) => {
             }
             // res.status(200).json({ ...others, accessToken });
 
-        } else {
+        } 
+        /*
+        else {
             res.status(500).json("Please Choose Role");
         }
+        */
 
     } catch (error) {
         res.status(500).json(error)

@@ -10,21 +10,23 @@ var cors = require('cors');
 // database Connection
 require('./Config/dbConnection');
 
-app.set("view engine", "ejs");
+//app.set("view engine", "ejs");
+
+//app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(cors());
 const routes = require('./Routes/index');
 
 app.use('/', routes);
-const directory = path.join(__dirname, 'productImages');
-app.use('/productImages', express.static(directory)); 
-
+//const directory = path.join(__dirname, 'productImages');
+//app.use('/productImages', express.static(directory)); 
 
 
 // catch 404 and forward to error handler
@@ -40,7 +42,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  //res.render('error');
+  res.send(`Error: ${err.message}`);
 });
 
 module.exports = app;
