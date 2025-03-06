@@ -151,7 +151,7 @@ exports.registerShopper = catchAsync(async (req, res, next) => {
 // Registration for Seller
 exports.registerSeller = catchAsync(async (req, res, next) => {
     console.log("Request for Register Seller");
-    console.log("Request body:" + req.body)
+    console.log("Request body:" + req.body.firstname + req.body.lastname+ req.body.mobilenumber+ req.body.email)
 
     // Verify If Mail Id exists
     const data = await Seller.findOne({ "email": req.body.email });
