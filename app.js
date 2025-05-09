@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-app.use(cors());
+//app.use(cors());
 const routes = require('./Routes/index');
 
 app.use('/', routes);
