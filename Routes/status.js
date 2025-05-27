@@ -4,25 +4,20 @@ const ordersController = require('../Controller/OrsersController/ordersControlle
 
 
 router.get('/', (req, res) => {
-  console.log("Reached....");
+const targetSize = 3.7 * 1024 * 1024; // 3.7 MB
+  const staticObjectStr = '{"name":"test","lastname":"test1"}';
 
-  const targetSize = 3.7 * 1024 * 1024; // 3.7 MB
-  const responseArray = [];
-  let currentSize = 0;
+  const objSize = Buffer.byteLength(staticObjectStr) + 1; // +1 for comma
+  const count = Math.floor(targetSize / objSize);
 
-  while (currentSize < targetSize) {
-    const obj = {
-      id: responseArray.length + 1,
-      name: "test_data_".repeat(10), // longer string
-      description: "a".repeat(100)   // more content per object
-    };
-    responseArray.push(obj);
-    currentSize = Buffer.byteLength(JSON.stringify(responseArray));
-  }
+  const repeatedObjects = Array(count).fill(staticObjectStr).join(',');
+  const finalJson = `[${repeatedObjects}]`;
 
-  console.log(`Final payload size: ${currentSize} bytes`);
-  res.status(200).json(responseArray);
+  res.set('Content-Type', 'application/json');
+  res.send(finalJson);
 });
+
+
 /*
 router.get('/', (req, res) => {
     res.status(403).json({
